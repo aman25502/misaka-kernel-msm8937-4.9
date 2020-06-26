@@ -10,7 +10,7 @@ export TZ="Asia/Kolkata";
 # Kernel compiling script
 mkdir -p $HOME/TC
 git clone https://github.com/aman25502/AnyKernel3 -b santoni 
-git clone https://github.com/ProtoChuz/toolchains -b 8.3-64 gcc-64 --depth=1
+git clone https://github.com/ProtoChuz/toolchains -b 5.5-64 gcc-64 --depth=1
 git clone https://github.com/ProtoChuz/linaro-mirror -b 4.9-32 gcc-32 --depth=1
 
 # Upload log to del.dog
