@@ -10,7 +10,8 @@ export TZ="Asia/Kolkata";
 # Kernel compiling script
 mkdir -p $HOME/TC
 git clone https://github.com/aman25502/AnyKernel3 -b santoni 
-git clone https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 prebuilts --depth=1  
+git clone https://github.com/ProtoChuz/linaro-mirror -b g4.9-64 gcc-64 --depth=1
+git clone https://github.com/ProtoChuz/linaro-mirror -b 4.9-32 gcc-32 --depth=1
 
 # Upload log to del.dog
 function sendlog {
@@ -49,8 +50,7 @@ mkdir -p ${KERNELDIR}/aroma
 mkdir -p ${KERNELDIR}/files
 
 export KERNELNAME="Testkernelqbranchmisaka"
-export CC=clang
-export BUILD_CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-8.x/bin/aarch64-linux-gnu-"
+export BUILD_CROSS_COMPILE="$HOME/TC/gcc-64/bin/aarch64-linux-gnu-"
 export SRCDIR="${KERNELDIR}";
 export OUTDIR="${KERNELDIR}/out";
 export ANYKERNEL="${KERNELDIR}/AnyKernel3";
@@ -60,7 +60,7 @@ export SUBARCH="arm64";
 export KBUILD_COMPILER_STRING="$($KERNELDIR/prebuilts/clang-r365631c/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
 export KBUILD_BUILD_USER="AHOY"
 export KBUILD_BUILD_HOST="AHOYTESTKERNELS"
-export PATH="$KERNELDIR/prebuilts/clang-r365631c/bin:${PATH}"
+export PATH="$KERNELDIR/gcc-64/bin:${PATH}"
 export DEFCONFIG="santoni_treble_defconfig";
 export ZIP_DIR="${KERNELDIR}/files";
 export IMAGE="${OUTDIR}/arch/${ARCH}/boot/Image.gz-dtb";
@@ -116,7 +116,7 @@ echo -e "Using ${JOBS} threads to compile"
  
 # Start the build
 # ================
-${MAKE} -j${JOBS} \ ARCH=arm64 \ CC=clang \ CLANG_TRIPLE=aarch64-linux-gnu- \ CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-4.9/bin/aarch64-linux-android-" \ CROSS_COMPILE_ARM32="$HOME/TC/arm-linux-gnu-4.9/bin/arm-linux-androideabi-" \ NM=llvm-nm \ OBJCOPY=llvm-objcopy \ OBJDUMP=llvm-objdump \ STRIP=llvm-strip | tee build-log.txt ;
+${MAKE} -j${JOBS} \ ARCH=arm64 \ CROSS_COMPILE=$(pwd)/gcc-64/bin/aarch64-elf- \ CROSS_COMPILE_ARM32=$(pwd)/gcc-32/bin/arm-eabi- | tee build-log.txt ;
  
  
 exitCode="$?";
