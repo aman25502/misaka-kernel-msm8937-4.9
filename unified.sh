@@ -116,7 +116,7 @@ echo -e "Using ${JOBS} threads to compile"
  
 # Start the build
 # ================
-${MAKE} -j${JOBS} \ ARCH=arm64 \ CROSS_COMPILE=$(pwd)/gcc-64/bin/aarch64-linux-android-gcc-4.9 \ CROSS_COMPILE_ARM32=$(pwd)/gcc-32/bin/arm-linux-gnueabi-gcc-4.9.4 | tee build-log.txt ;
+${MAKE} -j${JOBS} \ ARCH=arm64 \ CROSS_COMPILE=$(pwd)/gcc-64/bin/aarch64-linux-android- \ CROSS_COMPILE_ARM32=$(pwd)/gcc-32/bin/arm-linux-gnueabi- | tee build-log.txt ;
  
  
 exitCode="$?";
