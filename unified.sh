@@ -11,6 +11,7 @@ export TZ="Asia/Kolkata";
 mkdir -p $HOME/TC
 git clone https://github.com/aman25502/AnyKernel3 -b santoni 
 git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b android-9.0.0_r55 $HOME/TC/aarch64-linux-gnu-4.9 --depth=1
+git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b android-9.0.0_r55 $HOME/TC/arm-linux-gnu-4.9 --depth=1  
 
 # Upload log to del.dog
 function sendlog {
@@ -49,8 +50,8 @@ mkdir -p ${KERNELDIR}/aroma
 mkdir -p ${KERNELDIR}/files
 
 export KERNELNAME="Testkernelqbranchmisaka"
-export CC_FOR_BUILD=clang
 export BUILD_CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-4.9/bin/aarch64-linux-gnu-"
+export CROSS_COMPILE_ARM32="$HOME/TC/arm-linux-gnu-4.9/bin/arm-linux-gnueabi-"
 export SRCDIR="${KERNELDIR}";
 export OUTDIR="${KERNELDIR}/out";
 export ANYKERNEL="${KERNELDIR}/AnyKernel3";
