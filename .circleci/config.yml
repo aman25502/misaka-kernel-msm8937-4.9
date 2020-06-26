@@ -10,7 +10,7 @@ jobs:
    steps:
       - run:
           command: |
-           apt-get -y update && apt-get -y upgrade && apt-get -y install bc build-essential zip curl libstdc++6 git wget
+           apt-get -y update && apt-get -y upgrade && apt-get -y install bc build-essential zip curl libstdc++6 git wget gcc gcc-multilib clang gnupg gperf
            git clone https://github.com/aman25502/misaka-kernel-msm8937-4.9 -b ci-branch kernel
            cd kernel
            bash unified.sh
