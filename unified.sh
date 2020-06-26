@@ -19,7 +19,7 @@ function sendlog {
     file=$(jq -r .key <<< $content)
     log="https://del.dog/$file"
     echo "URL is: "$log" "
-    curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="Build failed, "$1" "$log" :3" -d chat_id=-353080174
+    curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="Build failed, "$1" "$log" :3" -d chat_id=-1001349965943
 }
  
 # Trim the log if build fails
@@ -35,8 +35,8 @@ function transfer() {
     url="$(curl -# -T $1 https://transfer.sh)";
     printf '\n';
     echo -e "Download ${zipname} at ${url}";
-    curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="$url" -d chat_id=-353080174
-    curl -F chat_id="-353080174" -F document=@"${ZIP_DIR}/$ZIPNAME" https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendDocument
+    curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="$url" -d chat_id=-1001349965943
+    curl -F chat_id="-1001349965943" -F document=@"${ZIP_DIR}/$ZIPNAME" https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendDocument
 }
  
 if [[ -z ${KERNELDIR} ]]; then
@@ -48,7 +48,8 @@ fi
 mkdir -p ${KERNELDIR}/aroma
 mkdir -p ${KERNELDIR}/files
 
-export KERNELNAME="Testkernelqbranchmisaka" 
+export KERNELNAME="Testkernelqbranchmisaka"
+export CC_FOR_BUILD=clang
 export BUILD_CROSS_COMPILE="$HOME/TC/aarch64-linux-gnu-4.9/bin/aarch64-linux-gnu-"
 export SRCDIR="${KERNELDIR}";
 export OUTDIR="${KERNELDIR}/out";
@@ -104,7 +105,7 @@ fi
  
 # Send Message about build started
 # ================
-curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="Build Scheduled for $KERNELNAME Kernel (${MAKE_TYPE})" -d chat_id=-353080174
+curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="Build Scheduled for $KERNELNAME Kernel (${MAKE_TYPE})" -d chat_id=-1001349965943
  
  
  
@@ -155,7 +156,7 @@ message="CI build of Test Kernel completed with the latest commit."
 
 time="Build took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) seconds."
 
-curl -F chat_id="-353080174" -F document=@"${ZIP_DIR}/$ZIPNAME" -F caption="$message $time" https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendDocument
+curl -F chat_id="-1001349965943" -F document=@"${ZIP_DIR}/$ZIPNAME" -F caption="$message $time" https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendDocument
 
 curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiORWZ_1YW2q8/sendMessage -d text="
 ♔♔♔♔♔♔♔BUILD-DETAILS♔♔♔♔♔♔♔
@@ -165,7 +166,7 @@ curl -s -X POST https://api.telegram.org/bot1294950340:AAF3nyGc8fOZtZ7wkAneQOkiO
 ⌚ <b>Build-Time</b> : <code>$time</code>
 🗒️ <b>Zip-Name</b>   : <code>$ZIPNAME</code>
 🤖 <b>Commit message</b> : <code>$COMMITMSG</code>
-"  -d chat_id=-353080174 -d "parse_mode=html"
+"  -d chat_id=-1001349965943 -d "parse_mode=html"
  
  
 fi
