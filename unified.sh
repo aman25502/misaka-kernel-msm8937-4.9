@@ -10,7 +10,7 @@ export TZ="Asia/Kolkata";
 # Kernel compiling script
 mkdir -p $HOME/TC
 git clone https://github.com/aman25502/AnyKernel3 -b santoni 
-git clone https://github.com/legionRom/platform_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 -b q gcc-64 --depth=1
+git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b android-9.0.0_r57 gcc-64 --depth=1
 git clone https://github.com/legionRom/platform_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 -b q gcc-32 --depth=1
 
 # Upload log to del.dog
