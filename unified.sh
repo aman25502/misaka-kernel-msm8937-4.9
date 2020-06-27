@@ -10,8 +10,8 @@ export TZ="Asia/Kolkata";
 # Kernel compiling script
 mkdir -p $HOME/TC
 git clone https://github.com/aman25502/AnyKernel3 -b santoni 
-git clone https://github.com/ProtoChuz/toolchains -b 5.5-64 gcc-64 --depth=1
-git clone https://github.com/ProtoChuz/linaro-mirror -b 4.9-32 gcc-32 --depth=1
+git clone https://github.com/legionRom/platform_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9 -b q gcc-64 --depth=1
+git clone https://github.com/legionRom/platform_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9 -b q gcc-32 --depth=1
 
 # Upload log to del.dog
 function sendlog {
@@ -50,7 +50,7 @@ mkdir -p ${KERNELDIR}/aroma
 mkdir -p ${KERNELDIR}/files
 
 export KERNELNAME="Testkernelqbranchmisaka"
-export BUILD_CROSS_COMPILE="$HOME/TC/gcc-64/bin/aarch64-elf-"
+export BUILD_CROSS_COMPILE="$HOME/TC/gcc-64/bin/aarch64-linux-android-"
 export SRCDIR="${KERNELDIR}";
 export OUTDIR="${KERNELDIR}/out";
 export ANYKERNEL="${KERNELDIR}/AnyKernel3";
@@ -116,7 +116,7 @@ echo -e "Using ${JOBS} threads to compile"
  
 # Start the build
 # ================
-${MAKE} -j${JOBS} \ ARCH=arm64 \ CROSS_COMPILE=$(pwd)/gcc-64/bin/aarch64-elf- \ CROSS_COMPILE_ARM32=$(pwd)/gcc-32/bin/arm-linux-gnueabi- | tee build-log.txt ;
+${MAKE} -j${JOBS} \ ARCH=arm64 \ CROSS_COMPILE=$(pwd)/gcc-64/bin/aarch64-linux-android- \ CROSS_COMPILE_ARM32=$(pwd)/gcc-32/bin/arm-linux-androideabi- | tee build-log.txt ;
  
  
 exitCode="$?";
