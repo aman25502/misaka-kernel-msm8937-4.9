@@ -1,21 +1,17 @@
-version: 2.1
-jobs:
-  compile:
-   docker:
-      - image: ubuntu:18.04
-   environment:
-      GIT_EMAIL: soniataran79@gmail.com
-      GIT_NAME: aman25502
-      VERSION: 2.2
-   steps:
-      - run:
-          command: |
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: e1-standard-8
+    os_image: ubuntu1804
+blocks:
+  - name: 'Block #1'
+    task:
+      jobs:
+        - name: 'Job #1'
+          commands:
            apt-get -y update && apt-get -y upgrade && apt-get -y install bc bison build-essential curl flex g++-multilib gcc gcc-multilib clang git gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev unzip openjdk-8-jdk python ccache libtinfo5 repo libstdc++6 wget libssl-dev rsync golang-go           
            git clone https://github.com/aman25502/misaka-kernel-msm8937-4.9 -b ci-branch kernel
            cd kernel
-           bash unified.sh
-workflows:
-  version: 2.1
-  cooking:
-    jobs:
-      - compile
+           bash unified.sh          
+            - checkout
